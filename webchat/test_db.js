@@ -15,7 +15,8 @@ let message= {
 try {
     db.newMessage(message)
 
-    db.getAllMessages().then((messages)=>{
+    db.getAllMessages()
+    .then((messages)=>{
         console.log(messages.length)
         console.log(messages[0])
     })

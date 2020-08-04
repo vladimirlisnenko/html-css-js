@@ -36,57 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var adapter_1 = require("./adapter");
-var uuid_1 = require("uuid");
-var Handler = /** @class */ (function () {
-    function Handler() {
-        var _this = this;
-        this.newMessage = function (msg) { return __awaiter(_this, void 0, void 0, function () {
-            var id, query;
-            return __generator(this, function (_a) {
-                id = uuid_1.v4();
-                query = function (client) {
-                    return client.query("\n        insert into messages\n          (id, from_id, to_id, content)\n        values \n          ($1::uuid, $2::uuid, $3::uuid, $4::text)", [id, msg.from.id, msg.to.id, msg.content])
-                        .then(function (res) {
-                        return { client: client };
-                    });
-                };
-                this.conn.query(query);
-                return [2 /*return*/];
-            });
-        }); };
-        this.getAllMessages = function () { return __awaiter(_this, void 0, void 0, function () {
-            var query, res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        query = function (client) {
-                            return __awaiter(this, void 0, void 0, function () {
-                                var res;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0: return [4 /*yield*/, client.query("\n        select from_id, to_id, content\n          from messages\n        ")
-                                                .then(function (execRes) {
-                                                return execRes;
-                                            })
-                                                .then(function (execRes) { return execRes.rows; })];
-                                        case 1:
-                                            res = _a.sent();
-                                            return [2 /*return*/, { client: client, res: res }];
-                                    }
-                                });
-                            });
-                        };
-                        return [4 /*yield*/, this.conn.query(query)];
-                    case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, res];
-                }
-            });
-        }); };
-        this.conn = new adapter_1.Conn();
+exports.Conn = void 0;
+var Pool = require("pg-pool");
+var config = {
+    user: "postgres",
+    password: "K*3aZKFTa*gbyMr3wX",
+    host: "85.143.217.139",
+    port: 5432,
+    database: "webchat",
+    ssl: false
+};
+var Conn = /** @class */ (function () {
+    function Conn() {
+        var pool = new Pool(config);
+        this.pool = pool;
     }
-    return Handler;
+    Conn.prototype.query = function (func) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.pool
+                        .connect()
+                        .then(func)
+                        .then(function (res) {
+                        res.client.release;
+                        return res.res;
+                    })];
+            });
+        });
+    };
+    return Conn;
 }());
-module.exports = new Handler();
-//# sourceMappingURL=index.js.map
+exports.Conn = Conn;
+//# sourceMappingURL=adapter.js.map

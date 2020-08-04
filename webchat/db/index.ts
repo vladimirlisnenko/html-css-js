@@ -1,63 +1,12 @@
 
-import Pool = require('pg-pool')
-import { Client, PoolClient, Query } from 'pg';
+import { Conn, QueryFunc, QueryRes } from './adapter'
+import { PoolClient } from 'pg';
 import { v4 } from 'uuid';
-
-type Config = { user: string, password: string, host: string, port: number, database: string, ssl: boolean }
-
-const config: Config = {
-  user: "postgres",
-  password: "K*3aZKFTa*gbyMr3wX",
-  host: "85.143.217.139",
-  port: 5432,
-  database: "webchat",
-  ssl: false
-};
-
-type QueryRes = {
-  client: PoolClient
-  res?: Array<any>
-}
-
-type QueryFunc = (client: PoolClient) => Promise<QueryRes>
-
-class Conn {
-  constructor(config: Config) {
-    const pool = new Pool(config);
-    this.pool = pool
-  }
-  pool: Pool<Client>
-  async query(func: QueryFunc): Promise<Array<any>> {
-    return this.pool
-      .connect()
-      .then(func)
-      .then((res: QueryRes) => {
-        res.client.release
-        return res.res
-      })
-  }
-}
-
-type Id = string
-
-type User = {
-  id: Id
-}
-
-type Message = {
-  from: User
-  to: User
-  content: String
-}
-
-interface IHandler {
-  newMessage(msg: Message): void
-  getAllMessages(): Array<Message>
-}
+import { IHandler, Message, User } from './interface'
 
 class Handler<IHandler> {
-  constructor(config: Config) {
-    this.conn = new Conn(config)
+  constructor() {
+    this.conn = new Conn()
   }
   private conn: Conn
 
@@ -95,8 +44,4 @@ class Handler<IHandler> {
   }
 }
 
-function newHandler() {
-  return new Handler(config)
-}
-
-module.exports = newHandler()
+module.exports = new Handler()
