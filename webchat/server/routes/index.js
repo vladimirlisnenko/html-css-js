@@ -11,6 +11,9 @@ routes.push({
 routes.push({
     method: 'GET',
     path: '/json',
+    options: {
+        cors:true
+    },
     handler: (request, h) => {
         return h.response({
             str:"string",
