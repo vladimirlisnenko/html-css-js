@@ -12,6 +12,15 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/nodejs/project1.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/webchat/test_db.js"
         }
     ]
 }
