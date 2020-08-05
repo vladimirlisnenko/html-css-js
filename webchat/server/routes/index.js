@@ -2,6 +2,14 @@ let routes=[]
 
 routes.push({
     method: 'GET',
+    path: '/test',
+    handler: (request, h) => {
+
+    }
+})
+
+routes.push({
+    method: 'GET',
     path: '/',
     handler: (request, h) => {
         return 'Hello World!';
@@ -42,4 +50,4 @@ routes.push({
     }
 })
 
-module.exports = routes
+module.exports= routes

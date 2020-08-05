@@ -23,9 +23,9 @@ export class Conn {
         return this.pool
             .connect()
             .then(func)
-            .then((res: QueryRes) => {
+            .then((res: QueryRes): Array<any> => {
                 res.client.release
-                return res.res
+                return res.res || []
             })
     }
 }

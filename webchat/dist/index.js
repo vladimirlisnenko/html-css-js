@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var adapter_1 = require("./adapter");
 var uuid_1 = require("uuid");
-var Handler = /** @class */ (function () {
+var Handler = (function () {
     function Handler() {
         var _this = this;
         this.newMessage = function (msg) { return __awaiter(_this, void 0, void 0, function () {
@@ -52,7 +52,7 @@ var Handler = /** @class */ (function () {
                     });
                 };
                 this.conn.query(query);
-                return [2 /*return*/];
+                return [2];
             });
         }); };
         this.getAllMessages = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -65,22 +65,22 @@ var Handler = /** @class */ (function () {
                                 var res;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
-                                        case 0: return [4 /*yield*/, client.query("\n        select from_id, to_id, content\n          from messages\n        ")
+                                        case 0: return [4, client.query("\n        select from_id, to_id, content\n          from messages\n        ")
                                                 .then(function (execRes) {
                                                 return execRes;
                                             })
                                                 .then(function (execRes) { return execRes.rows; })];
                                         case 1:
                                             res = _a.sent();
-                                            return [2 /*return*/, { client: client, res: res }];
+                                            return [2, { client: client, res: res }];
                                     }
                                 });
                             });
                         };
-                        return [4 /*yield*/, this.conn.query(query)];
+                        return [4, this.conn.query(query)];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, res];
+                        return [2, res];
                 }
             });
         }); };
@@ -89,4 +89,3 @@ var Handler = /** @class */ (function () {
     return Handler;
 }());
 module.exports = new Handler();
-//# sourceMappingURL=index.js.map

@@ -8,11 +8,16 @@
     "extends": [
         "airbnb-base"
     ],
+    "parser": "typescript-eslint-parser",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true
+        },
         "ecmaVersion": 2018
     },
     "plugins": [],

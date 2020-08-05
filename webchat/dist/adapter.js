@@ -46,7 +46,7 @@ var config = {
     database: "webchat",
     ssl: false
 };
-var Conn = /** @class */ (function () {
+var Conn = (function () {
     function Conn() {
         var pool = new Pool(config);
         this.pool = pool;
@@ -54,12 +54,12 @@ var Conn = /** @class */ (function () {
     Conn.prototype.query = function (func) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.pool
+                return [2, this.pool
                         .connect()
                         .then(func)
                         .then(function (res) {
                         res.client.release;
-                        return res.res;
+                        return res.res || [];
                     })];
             });
         });
@@ -67,4 +67,3 @@ var Conn = /** @class */ (function () {
     return Conn;
 }());
 exports.Conn = Conn;
-//# sourceMappingURL=adapter.js.map

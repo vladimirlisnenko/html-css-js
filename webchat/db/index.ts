@@ -44,4 +44,4 @@ class Handler<IHandler> {
   }
 }
 
-module.exports = new Handler()
+export default new Handler()

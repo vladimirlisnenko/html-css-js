@@ -6,6 +6,6 @@ function fetchData() {
         console.log(response);
         return response
     })
-        .then(response => response.json())
-        .then(data => console.log(data));  
+    .then(response => response.json())
+    .then(data => console.log(data));  
 }
