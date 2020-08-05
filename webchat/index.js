@@ -1,13 +1,12 @@
-require('./server')
-const {db}=require('./dist')
+require('./server');
+const { db } = require('./dist');
 
 try {
-    db.getAllMessages()
-    .then((messages)=>{
-        console.log(messages.length+"/")
-        console.log(messages[0])
-    })
-
-} catch(e){
-    console.error(e);
-}  
+  db.getAllMessages()
+    .then((messages) => {
+      console.warn(`${messages.length}/`);
+      console.warn(messages[0]);
+    });
+} catch (e) {
+  console.error(e);
+}

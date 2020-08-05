@@ -1,53 +1,44 @@
-let routes=[]
+/* eslint-disable no-unused-vars */
+const routes = [];
 
 routes.push({
-    method: 'GET',
-    path: '/test',
-    handler: (request, h) => {
+  method: 'GET',
+  path: '/test',
+  handler: (request, h) => {
 
-    }
-})
-
-routes.push({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-        return 'Hello World!';
-    }
-})
+  },
+});
 
 routes.push({
-    method: 'GET',
-    path: '/json',
-    options: {
-        cors:true
-    },
-    handler: (request, h) => {
-        return h.response({
-            str:"string",
-            num:1,
-            bool:true,
-            arr:['1','2','3']    
-        })
-    }
-})
-
+  method: 'GET',
+  path: '/',
+  handler: (request, h) => 'Hello World!',
+});
 
 routes.push({
-    method: 'GET',
-    path: '/param/{data}',
-    handler: (request, h) => {
-        return request.params.data;
-    }
-})
-
+  method: 'GET',
+  path: '/json',
+  options: {
+    cors: true,
+  },
+  handler: (request, h) => h.response({
+    str: 'string',
+    num: 1,
+    bool: true,
+    arr: ['1', '2', '3'],
+  }),
+});
 
 routes.push({
-    method: 'POST',
-    path: '/post',
-    handler: (request, h) => {
-        return request.payload;
-    }
-})
+  method: 'GET',
+  path: '/param/{data}',
+  handler: (request, h) => request.params.data,
+});
 
-module.exports= routes
+routes.push({
+  method: 'POST',
+  path: '/post',
+  handler: (request, h) => request.payload,
+});
+
+module.exports = routes;
