@@ -1,5 +1,5 @@
 require('./server')
-const db=require('./dist')
+const {db}=require('./dist')
 
 try {
     db.getAllMessages()

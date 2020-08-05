@@ -44,4 +44,4 @@ class Handler<IHandler> {
   }
 }
 
-export default new Handler()
+export const db = new Handler()
