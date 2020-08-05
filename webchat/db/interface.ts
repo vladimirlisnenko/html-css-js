@@ -7,7 +7,7 @@ export type User = {
 
 export type Message = {
     from: User
-    to: User
+    to: User //
     content: String
 }
 

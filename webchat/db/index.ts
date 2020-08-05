@@ -38,7 +38,7 @@ class Handler<IHandler> {
         .then((execRes) => execRes.rows)
       return { client, res }
     }
-
+    //test
     var res = await this.conn.query(query)
     return res
   }
